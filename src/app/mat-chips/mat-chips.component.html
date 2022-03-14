@@ -1,0 +1,45 @@
+<p>To Emails: <span class="error-text">{{toEmailObj.errorMsg}}</span></p>
+<mat-form-field class="example-chip-list" appearance="fill">
+  <mat-chip-list #toChipList>
+    <mat-chip
+      *ngFor="let toEmail of toEmailObj.emailList"
+      (removed)="removeEmail(toEmail, toEmailObj)"
+      [ngClass]="{'error': !toEmail.isValid}"
+    >
+      {{toEmail.email}}
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+    <input
+      [placeholder]="toEmailObj.placeHolder"
+      [matChipInputFor]="toChipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="true"
+      (matChipInputTokenEnd)="addEmail($event, toEmailObj)"
+    />
+  </mat-chip-list>
+</mat-form-field>
+
+<p>CC Emails: <span class="error-text">{{ccEmailObj.errorMsg}}</span></p>
+<mat-form-field class="example-chip-list" appearance="fill">
+  <mat-chip-list #ccChipList>
+    <mat-chip
+      *ngFor="let ccEmail of ccEmailObj.emailList"
+      (removed)="removeEmail(ccEmail, ccEmailObj)"
+      [ngClass]="{'error': !ccEmail.isValid}"
+    >
+      {{ccEmail.email}}
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+    <input
+      [placeholder]="ccEmailObj.placeHolder"
+      [matChipInputFor]="ccChipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="true"
+      (matChipInputTokenEnd)="addEmail($event, ccEmailObj)"
+    />
+  </mat-chip-list>
+</mat-form-field>
